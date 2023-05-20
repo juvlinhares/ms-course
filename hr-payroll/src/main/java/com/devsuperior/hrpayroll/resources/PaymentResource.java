@@ -13,14 +13,16 @@ import com.devsuperior.hrpayroll.service.PaymentService;
 @RestController
 @RequestMapping(value="/payments")
 public class PaymentResource {
+
+	//dependecy injection
 	
-	//injeção de dependencia do service:
 	@Autowired
 	private PaymentService service;
 	
 	@GetMapping(value="/{workerId}/days/{days}")
-	public ResponseEntity<Payment> getPayment(@PathVariable Long workerId,@PathVariable Integer days){
-		Payment payment= service.getPayment(workerId, days);
+	public ResponseEntity<Payment> getPayment(@PathVariable Long workerId, @PathVariable Integer days){
+		//criar um obj que vai receber as informações do service
+		Payment payment = service.getPayment(workerId, days);
 		return ResponseEntity.ok(payment);
 	}
 
