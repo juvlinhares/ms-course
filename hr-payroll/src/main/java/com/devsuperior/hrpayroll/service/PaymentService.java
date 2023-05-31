@@ -10,18 +10,13 @@ import com.devsuperior.hrpayroll.feignclients.WorkerFeignClient;
 @Service
 public class PaymentService {
 
-	// injeção de dependencia do workerfeignClient:
+	// injeção de workFeingClient:
 	@Autowired
-	private WorkerFeignClient workerfeignClient;
-
-	// metodo que vai instanciar o pagamento:
+	private WorkerFeignClient workerFeignClient;
 
 	public Payment getPayment(Long workerId, Integer days) {
+		Worker worker = workerFeignClient.findById(workerId).getBody();
 
-		// montagem do path do worker:
-		Worker worker = workerfeignClient.findById(workerId).getBody();
-
-		// instancia do pagamento com as propriedades do worker:
 		return new Payment(worker.getName(), worker.getDailyInCome(), days);
 	}
 
