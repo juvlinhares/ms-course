@@ -19,33 +19,32 @@ import com.devsuperior.hrworker.repositories.WorkerRepository;
 @RequestMapping(value = "/workers")
 public class WorkerResource {
 	
-	//imprimir coisas no log
+	//logger:
 	private static Logger logger = LoggerFactory.getLogger(WorkerResource.class);
 	
-	//injeção do environment:
-	@Autowired
-	private Environment environment;
-
-	//endipoint que retorna todos os os workers do banco de dados
+	//injenção de dependencia do Enviroment
 	
+	@Autowired
+	private Environment env;
+	
+	// endipoint que retorna todos os os workers do banco de dados
+
 	@Autowired
 	private WorkerRepository repository;
-	
-	//findAll
+
+	// findAll
 	@GetMapping
-	public ResponseEntity<List<Worker>> findAll(){
+	public ResponseEntity<List<Worker>> findAll() {
 		List<Worker> list = repository.findAll();
 		return ResponseEntity.ok(list);
-		
+
 	}
-	
-	//find By Id
-	@GetMapping(value="/{id}")
-	public ResponseEntity<Worker> findById(@PathVariable Long id ){
-		
-		//imprimir o logger da aplicação:
-		logger.info("PORT = "+ environment.getProperty("local.server.port"));
-		
+
+	// find By Id
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Worker> findById(@PathVariable Long id) {
+
+		logger.info("PORT =" + env.getProperty("local.server.port"));
 		Worker obj = repository.findById(id).get();
 		return ResponseEntity.ok(obj);
 	}
