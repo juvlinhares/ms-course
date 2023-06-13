@@ -43,9 +43,10 @@ public class WorkerResource {
 	// find By Id
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Worker> findById(@PathVariable Long id) {
-
-		/*try {
-			Thread.sleep(3000L);
+		
+		/*
+		try {
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
