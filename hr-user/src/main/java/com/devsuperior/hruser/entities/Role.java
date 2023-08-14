@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_role")
+@Table(name = "tb_role")
 public class Role implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -24,10 +24,10 @@ public class Role implements Serializable {
 
 	}
 
-	public Role(Long id, String roleName) {
+	public Role(Long id, String nameRole) {
 		super();
 		this.id = id;
-		this.roleName = roleName;
+		this.roleName = nameRole;
 	}
 
 	public Long getId() {
@@ -42,8 +42,8 @@ public class Role implements Serializable {
 		return roleName;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setRoleName(String nameRole) {
+		this.roleName = nameRole;
 	}
 
 	@Override
