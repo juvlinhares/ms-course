@@ -1,4 +1,4 @@
-package com.devsuperior.hroauth.resources;
+package com.devsuperior.hroauth.resourcers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,17 +12,17 @@ import com.devsuperior.hroauth.entities.User;
 import com.devsuperior.hroauth.services.UserService;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping("/users")
 public class UserResource {
 
 	@Autowired
 	private UserService service;
 
-	@GetMapping(value = "/search")
+	@GetMapping("/search")
 	public ResponseEntity<User> findByEmail(@RequestParam String email) {
 		try {
 			User user = service.findByEmail(email);
-			return ResponseEntity.ok().body(user);
+			return ResponseEntity.ok(user);
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
